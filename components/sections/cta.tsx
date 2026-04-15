@@ -3,6 +3,7 @@
 import { ArrowRight } from 'lucide-react';
 import { Reveal } from '@/components/shared/reveal';
 import { Magnetic } from '@/components/shared/magnetic';
+import { CursorSpotlight } from '@/components/shared/cursor-spotlight';
 import { Button } from '@/components/ui/button';
 import { Leaf } from '@/components/shared/illustrations/leaf';
 import { Badge } from '@/components/ui/badge';
@@ -12,7 +13,12 @@ export function CTA() {
     <section id="cta" className="relative py-32">
       <div className="container">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-cta-mesh p-10 text-center sm:p-16 lg:p-24">
+          <CursorSpotlight
+            color="rgba(249, 168, 212, 0.45)"
+            size={620}
+            className="overflow-hidden rounded-[2.5rem] border border-white/10 bg-cta-mesh"
+          >
+            <div className="relative p-10 text-center sm:p-16 lg:p-24">
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(34,197,94,0.25),rgba(236,72,153,0.28),rgba(34,197,94,0.15),rgba(236,72,153,0.22))] bg-[length:300%_300%] animate-gradient-shift opacity-80 mix-blend-overlay"
@@ -76,7 +82,8 @@ export function CTA() {
                 Free shipping over $75 · 30-day guarantee
               </p>
             </div>
-          </div>
+            </div>
+          </CursorSpotlight>
         </Reveal>
       </div>
     </section>

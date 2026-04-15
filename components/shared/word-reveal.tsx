@@ -26,14 +26,18 @@ const container = (stagger: number, delay: number): Variants => ({
 
 const child = (duration: number): Variants => ({
   hidden: {
-    opacity: 0,
     y: '110%',
-    filter: 'blur(8px)',
+    opacity: 0,
+    scale: 0.96,
+    filter: 'blur(6px)',
+    clipPath: 'inset(100% 0% 0% 0%)',
   },
   show: {
-    opacity: 1,
     y: '0%',
+    opacity: 1,
+    scale: 1,
     filter: 'blur(0px)',
+    clipPath: 'inset(0% 0% 0% 0%)',
     transition: {
       duration,
       ease: [0.22, 1, 0.36, 1],

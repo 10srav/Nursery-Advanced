@@ -1,6 +1,7 @@
 'use client';
 
 import { Reveal } from './reveal';
+import { ScrambleText } from './scramble-text';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
@@ -30,11 +31,16 @@ export function SectionHeading({
       )}
     >
       <Reveal delay={0}>
-        <Badge variant={accent === 'default' ? 'default' : accent === 'bloom' ? 'bloom' : 'sage'}>
-          <span className="h-1.5 w-1.5 rounded-full bg-current" />
+        <Badge
+          variant={
+            accent === 'default' ? 'default' : accent === 'bloom' ? 'bloom' : 'sage'
+          }
+        >
+          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-current" />
           {eyebrow}
         </Badge>
       </Reveal>
+
       <Reveal delay={0.08}>
         <h2
           className={cn(
@@ -43,9 +49,10 @@ export function SectionHeading({
             'max-w-4xl',
           )}
         >
-          {title}
+          <ScrambleText text={title} duration={1100} as="span" />
         </h2>
       </Reveal>
+
       {subtitle && (
         <Reveal delay={0.16}>
           <p

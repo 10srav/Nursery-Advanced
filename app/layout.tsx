@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { SmoothScrollProvider } from '@/components/shared/smooth-scroll-provider';
 import { ScrollProgress } from '@/components/shared/scroll-progress';
+import { Cursor } from '@/components/shared/cursor';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import './globals.css';
@@ -87,6 +88,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <Cursor />
         <ScrollProgress />
         <SmoothScrollProvider>
           <Navbar />

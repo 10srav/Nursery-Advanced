@@ -60,10 +60,15 @@ export function Navbar() {
             <a
               key={l.href}
               href={l.href}
+              data-cursor="hover"
               className="group relative rounded-full px-4 py-2 text-sm font-medium text-forest-900/85 transition-colors cursor-pointer hover:text-forest-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-500 focus-visible:ring-offset-2"
             >
               <span className="relative z-10">{l.label}</span>
               <span aria-hidden className="absolute inset-0 scale-90 rounded-full bg-forest-900/5 opacity-0 transition-all duration-300 ease-liquid group-hover:scale-100 group-hover:opacity-100" />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute bottom-1.5 left-1/2 h-[2px] w-[calc(100%-2rem)] origin-center -translate-x-1/2 scale-x-0 bg-gradient-to-r from-forest-700 to-bloom-500 transition-transform duration-500 ease-liquid group-hover:scale-x-100"
+              />
             </a>
           ))}
         </nav>
