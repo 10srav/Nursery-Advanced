@@ -20,12 +20,12 @@ function Row({ reverse = false }: { reverse?: boolean }) {
     >
       {items.map((item, i) => (
         <span key={`${item}-${i}`} className="flex items-center gap-10">
-          <span className="font-display text-4xl font-medium italic text-forest-900/90 sm:text-5xl md:text-6xl">
+          <span className="font-display text-4xl font-medium italic gradient-stroke-text sm:text-5xl md:text-6xl">
             {item}
           </span>
           <Leaf
             variant="simple"
-            className="h-6 w-auto shrink-0 text-bloom-500"
+            className="h-6 w-auto shrink-0"
             fill="#EC4899"
             accent="#9D174D"
           />
@@ -39,7 +39,7 @@ export function MarqueeRibbon() {
   return (
     <section
       aria-hidden
-      className="relative overflow-hidden border-y border-forest-900/10 bg-mint-100/60 py-8 backdrop-blur-sm"
+      className="relative overflow-hidden border-y border-forest-900/10 bg-gradient-to-r from-mint via-mint-100 to-mint py-8 backdrop-blur-sm"
       style={{
         maskImage:
           'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',

@@ -16,7 +16,7 @@
 
   body {
     position: relative;
-    background-color: #F0FDF4;
+    background-color: transparent;
     color: #14532D;
     font-family: 'Inter', system-ui, sans-serif;
     font-feature-settings: 'ss01', 'cv11';

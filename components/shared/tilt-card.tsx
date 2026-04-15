@@ -17,28 +17,35 @@ interface TiltCardProps {
   max?: number;
   scale?: number;
   glareOpacity?: number;
+  /**
+   * Radial glare color (with opacity). Defaults to a soft bloom-pink.
+   */
+  glareColor?: string;
 }
 
 export function TiltCard({
   children,
   className,
   max = 12,
-  scale = 1.035,
-  glareOpacity = 0.28,
+  scale = 1.04,
+  glareOpacity = 0.42,
+  glareColor = 'rgba(249, 168, 212',
 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 200, damping: 20, mass: 0.6 });
-  const sy = useSpring(y, { stiffness: 200, damping: 20, mass: 0.6 });
+  // Snappier than before — 300/22 is the 21dev inspiration default for card tilts.
+  const sx = useSpring(x, { stiffness: 300, damping: 22, mass: 0.5 });
+  const sy = useSpring(y, { stiffness: 300, damping: 22, mass: 0.5 });
 
   const rotateX = useTransform(sy, [-0.5, 0.5], [max, -max]);
   const rotateY = useTransform(sx, [-0.5, 0.5], [-max, max]);
   const glareX = useTransform(sx, [-0.5, 0.5], ['0%', '100%']);
   const glareY = useTransform(sy, [-0.5, 0.5], ['0%', '100%']);
-  const glareBackground = useMotionTemplate`radial-gradient(400px circle at ${glareX} ${glareY}, rgba(255,255,255,${glareOpacity}), transparent 45%)`;
+  // Two stacked gradients: warm bloom tint that follows cursor + subtle white highlight.
+  const glareBackground = useMotionTemplate`radial-gradient(420px circle at ${glareX} ${glareY}, ${glareColor}, ${glareOpacity}), transparent 55%), radial-gradient(180px circle at ${glareX} ${glareY}, rgba(255,255,255,0.32), transparent 50%)`;
 
   const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (reduced) return;
@@ -61,7 +68,7 @@ export function TiltCard({
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       whileHover={reduced ? {} : { scale }}
-      transition={{ type: 'spring', stiffness: 240, damping: 20 }}
+      transition={{ type: 'spring', stiffness: 260, damping: 20 }}
       style={{
         rotateX: reduced ? 0 : rotateX,
         rotateY: reduced ? 0 : rotateY,
@@ -69,7 +76,10 @@ export function TiltCard({
       }}
       className={cn('relative will-change-transform', className)}
     >
-      <div style={{ transform: 'translateZ(0)' }} className="h-full w-full">
+      <div
+        style={{ transformStyle: 'preserve-3d' }}
+        className="h-full w-full"
+      >
         {children}
       </div>
       {!reduced && (
